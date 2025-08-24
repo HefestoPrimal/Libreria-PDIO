@@ -25,9 +25,11 @@ void PDIO::ImprimirSerial(String msj, char color) {
 void PDIO::BlinkPin(int pin, int times, int delayTime) {
   for (int i = 0; i < times; i++) {
     digitalWrite(pin, HIGH);
-    vTaskDelay(delayTime / portTICK_PERIOD_MS);
+    //vTaskDelay(delayTime / portTICK_PERIOD_MS);
+    delay(delayTime);
     digitalWrite(pin, LOW);
-    vTaskDelay(delayTime / portTICK_PERIOD_MS);
+    //vTaskDelay(delayTime / portTICK_PERIOD_MS);
+    delay(delayTime);
   }
 }
 
@@ -40,9 +42,11 @@ void PDIO::ManejoEstrobo(int pin, int freq, int delayTime) {
       }
 
       digitalWrite(pin, HIGH);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
+      //vTaskDelay(freq / portTICK_PERIOD_MS);
+      delay(freq);
       digitalWrite(pin, LOW);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
+      //vTaskDelay(freq / portTICK_PERIOD_MS);
+      delay(freq);
     }
 
   } else {
@@ -55,9 +59,11 @@ void PDIO::ManejoEstrobo(int pin, int freq, int delayTime) {
         break;
       }
       digitalWrite(pin, HIGH);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
+      //vTaskDelay(freq / portTICK_PERIOD_MS);
+      delay(freq);
       digitalWrite(pin, LOW);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
+      //vTaskDelay(freq / portTICK_PERIOD_MS);
+      delay(freq);
     }
   }
 }
