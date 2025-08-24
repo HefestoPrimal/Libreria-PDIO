@@ -12,6 +12,7 @@
       void ImprimirSerial(String msj, char color = 'w');
       void BlinkPin(int pin, int times, int delayTime);
       void ManejoEstrobo(int pin, int freq, int delayTime);
+      String LeerSerial();
   };
 
 #endif
