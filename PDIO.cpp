@@ -16,7 +16,7 @@ void PDIO::ImprimirSerial(String msj, char color) {
       case 'w': colorCode = "\033[37m"; break; // Blanco
       default: colorCode = "\033[0m"; // Sin color
     }
-    Serial.print(color);
+    Serial.print(colorCode);
     Serial.println(msj);
     Serial.print("\033[0m");
   }
