@@ -3,7 +3,7 @@
 bool PDIO::DEBUG = false;
 bool PDIO::DETENER = false;
 
-void PDIO::ImprimirSerial(String msj, char color = 'w') {
+void PDIO::ImprimirSerial(String msj, char color) {
   if (PDIO::DEBUG) {
     String colorCode;
     switch (color) {
