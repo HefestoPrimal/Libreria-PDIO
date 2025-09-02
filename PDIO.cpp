@@ -25,11 +25,18 @@ void PDIO::ImprimirSerial(String msj, char color) {
 void PDIO::BlinkPin(int pin, int times, int delayTime) {
   for (int i = 0; i < times; i++) {
     digitalWrite(pin, HIGH);
-    vTaskDelay(delayTime / portTICK_PERIOD_MS);
-    //delay(delayTime);
+    #ifdef ARDUINO
+      delay(delayTime);
+    #else
+      vTaskDelay(delayTime / portTICK_PERIOD_MS);
+    #endif
+
     digitalWrite(pin, LOW);
-    vTaskDelay(delayTime / portTICK_PERIOD_MS);
-    //delay(delayTime);
+    #ifdef ARDUINO
+      delay(delayTime);
+    #else
+      vTaskDelay(delayTime / portTICK_PERIOD_MS);
+    #endif
   }
 }
 
@@ -73,7 +80,7 @@ String PDIO::LeerSerial() {
   if (Serial.available()) {
     comandoSerial = Serial.readStringUntil('\n');
     if (comandoSerial != "") {
-      PDIO::ImprimirSerial("Comando recibido en Serial" + comandoSerial, 'c');
+      PDIO::ImprimirSerial("Comando recibido en Serial-> " + comandoSerial, 'c');
       return comandoSerial;
     } else {
       PDIO::ImprimirSerial("Comando vacio", 'r');
