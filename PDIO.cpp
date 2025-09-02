@@ -49,11 +49,18 @@ void PDIO::ManejoEstrobo(int pin, int freq, int delayTime) {
       }
 
       digitalWrite(pin, HIGH);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
-      //delay(freq);
+      #ifdef ARDUINO
+        delay(freq);
+      #else
+        vTaskDelay(freq / portTICK_PERIOD_MS);
+      #endif
+
       digitalWrite(pin, LOW);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
-      //delay(freq);
+      #ifdef ARDUINO
+        delay(freq);
+      #else
+        vTaskDelay(freq / portTICK_PERIOD_MS);
+      #endif
     }
 
   } else {
@@ -65,12 +72,20 @@ void PDIO::ManejoEstrobo(int pin, int freq, int delayTime) {
         PDIO::ImprimirSerial("Manejo Estrobo por Tiempo Finito detenido.", 'y');
         break;
       }
+
       digitalWrite(pin, HIGH);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
-      //delay(freq);
+      #ifdef ARDUINO
+        delay(freq);
+      #else
+        vTaskDelay(freq / portTICK_PERIOD_MS);
+      #endif
+      
       digitalWrite(pin, LOW);
-      vTaskDelay(freq / portTICK_PERIOD_MS);
-      //delay(freq);
+      #ifdef ARDUINO
+        delay(freq);
+      #else
+        vTaskDelay(freq / portTICK_PERIOD_MS);
+      #endif
     }
   }
 }
