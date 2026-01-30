@@ -2,7 +2,7 @@
   "name": "PDIO",
   "version": "1.1.0.0",
   "description": "Libreria con funciones recurrentes en mis proyectos de ESP32 para el trabajo",
-  "keywords": "debug, serial, arduino, esp32, esp32-s3, esp32-c3",
+  "keywords": "debug, serial, arduino, esp32, esp32-s3, esp32-c3, eeprom",
   "authors": [
     {
       "name": "Hefesto_Primal",

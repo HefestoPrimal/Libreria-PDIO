@@ -13,7 +13,6 @@ void PDIO::ImprimirSerial(String msj, char color) {
       case 'y': colorCode = "\033[33m"; break; // Amarillo
       case 'c': colorCode = "\033[36m"; break; // Cian
       case 'm': colorCode = "\033[35m"; break; // Magenta
-      case 'w': colorCode = "\033[37m"; break; // Blanco
       default: colorCode = "\033[0m"; // Sin color
     }
     Serial.print(colorCode);
@@ -103,4 +102,41 @@ String PDIO::LeerSerial() {
     }
   }
   return "";
+}
+
+void PDIO::RespiracionLED(int pinLed, int tiempo) {
+  int breath = 25;
+  int tiempoRespirando = tiempo * 1000;
+  int ciclos = tiempoRespirando / (2 * breath);
+
+  for (int i = 0; i < 255; i++) {
+    analogWrite(pinLed, i);
+    #ifdef ARDUINO
+      delay(breath);
+    #else
+      vTaskDelay(breath);
+  }
+  for (int j = 255; i > 0; i--) {
+    analogWrite(pinLed, j);
+    #ifdef ARDUINO
+      delay(breath);
+    #else
+      vTaskDelay(breath);
+  }
+}
+
+void PDIO::TonosBocina(int pin, int frecuencia, int duracionTono, int duracionSilencio) {
+  tone(pin, frecuencia, duracion);
+  #ifdef Arduino
+    delay(duracion);
+  #else
+    vTaskDelay(duracion / portTICK_PERIOD_MS);
+  #endif
+
+  noTone(pin);
+  #ifdef Arduino
+    delay(duracion);
+  #else
+    vTaskDelay(duracion / portTICK_PERIOD_MS);
+  #endif
 }

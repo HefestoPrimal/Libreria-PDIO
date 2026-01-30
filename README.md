@@ -28,4 +28,4 @@ void setup() {
   // El segundo parámetro es la frecuencia en milisegundos
   // El tercer parámetro es el tiempo en segundos que va a estar parpadeando
 }
-
+```
