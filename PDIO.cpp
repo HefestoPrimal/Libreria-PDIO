@@ -117,7 +117,7 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
       vTaskDelay(breath);
     #endif
   }
-  for (int j = 255; i > 0; i--) {
+  for (int j = 255; j > 0; j--) {
     analogWrite(pinLed, j);
     #ifdef ARDUINO
       delay(breath);
@@ -128,17 +128,17 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
 }
 
 void PDIO::TonosBocina(int pin, int frecuencia, int duracionTono, int duracionSilencio) {
-  tone(pin, frecuencia, duracion);
+  tone(pin, frecuencia, duracionTono);
   #ifdef Arduino
     delay(duracion);
   #else
-    vTaskDelay(duracion / portTICK_PERIOD_MS);
+    vTaskDelay(duracionTono / portTICK_PERIOD_MS);
   #endif
 
   noTone(pin);
   #ifdef Arduino
-    delay(duracion);
+    delay(duracionSilencio);
   #else
-    vTaskDelay(duracion / portTICK_PERIOD_MS);
+    vTaskDelay(duracionSilencio / portTICK_PERIOD_MS);
   #endif
 }
