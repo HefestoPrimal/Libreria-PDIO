@@ -115,6 +115,7 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
       delay(breath);
     #else
       vTaskDelay(breath);
+    #endif
   }
   for (int j = 255; i > 0; i--) {
     analogWrite(pinLed, j);
@@ -122,6 +123,7 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
       delay(breath);
     #else
       vTaskDelay(breath);
+    #endif
   }
 }
 
