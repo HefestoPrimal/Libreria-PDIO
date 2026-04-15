@@ -130,7 +130,7 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
 void PDIO::TonosBocina(int pin, int frecuencia, int duracionTono, int duracionSilencio) {
   tone(pin, frecuencia, duracionTono);
   #ifdef ARDUINO || ESP8266 || ESP12
-    delay(duracion);
+    delay(duracionTono);
   #else
     vTaskDelay(duracionTono / portTICK_PERIOD_MS);
   #endif
