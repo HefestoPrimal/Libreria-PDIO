@@ -24,14 +24,14 @@ void PDIO::ImprimirSerial(String msj, char color) {
 void PDIO::BlinkPin(int pin, int times, int delayTime) {
   for (int i = 0; i < times; i++) {
     digitalWrite(pin, HIGH);
-    #ifdef ARDUINO
+    #ifdef ARDUINO || ESP8266 || ESP12
       delay(delayTime);
     #else
       vTaskDelay(delayTime / portTICK_PERIOD_MS);
     #endif
 
     digitalWrite(pin, LOW);
-    #ifdef ARDUINO
+    #ifdef ARDUINO || ESP8266 || ESP12
       delay(delayTime);
     #else
       vTaskDelay(delayTime / portTICK_PERIOD_MS);
@@ -48,14 +48,14 @@ void PDIO::ManejoEstrobo(int pin, int freq, int delayTime) {
       }
 
       digitalWrite(pin, HIGH);
-      #ifdef ARDUINO
+      #ifdef ARDUINO || ESP8266 || ESP12
         delay(freq);
       #else
         vTaskDelay(freq / portTICK_PERIOD_MS);
       #endif
 
       digitalWrite(pin, LOW);
-      #ifdef ARDUINO
+      #ifdef ARDUINO || ESP8266 || ESP12
         delay(freq);
       #else
         vTaskDelay(freq / portTICK_PERIOD_MS);
@@ -73,14 +73,14 @@ void PDIO::ManejoEstrobo(int pin, int freq, int delayTime) {
       }
 
       digitalWrite(pin, HIGH);
-      #ifdef ARDUINO
+      #ifdef ARDUINO || ESP8266 || ESP12
         delay(freq);
       #else
         vTaskDelay(freq / portTICK_PERIOD_MS);
       #endif
       
       digitalWrite(pin, LOW);
-      #ifdef ARDUINO
+      #ifdef ARDUINO || ESP8266 || ESP12
         delay(freq);
       #else
         vTaskDelay(freq / portTICK_PERIOD_MS);
@@ -111,7 +111,7 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
 
   for (int i = 0; i < 255; i++) {
     analogWrite(pinLed, i);
-    #ifdef ARDUINO
+    #ifdef ARDUINO || ESP8266 || ESP12
       delay(breath);
     #else
       vTaskDelay(breath);
@@ -119,7 +119,7 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
   }
   for (int j = 255; j > 0; j--) {
     analogWrite(pinLed, j);
-    #ifdef ARDUINO
+    #ifdef ARDUINO || ESP8266 || ESP12
       delay(breath);
     #else
       vTaskDelay(breath);
@@ -129,14 +129,14 @@ void PDIO::RespiracionLED(int pinLed, int tiempo) {
 
 void PDIO::TonosBocina(int pin, int frecuencia, int duracionTono, int duracionSilencio) {
   tone(pin, frecuencia, duracionTono);
-  #ifdef Arduino
+  #ifdef ARDUINO || ESP8266 || ESP12
     delay(duracion);
   #else
     vTaskDelay(duracionTono / portTICK_PERIOD_MS);
   #endif
 
   noTone(pin);
-  #ifdef Arduino
+  #ifdef ARDUINO || ESP8266 || ESP12
     delay(duracionSilencio);
   #else
     vTaskDelay(duracionSilencio / portTICK_PERIOD_MS);
